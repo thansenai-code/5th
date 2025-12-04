@@ -1,139 +1,139 @@
 # Dynamic Price Optimization Recommendation Engine
-### Hackathon Project – Sprint 0 (Planning & Setup)
+### Sprint 0 – Planning & Setup Documentation
 
 ---
 
 ## 1. Project Overview
 
-This project aims to build a **Dynamic Price Optimization Engine** that identifies slow-moving retail products and recommends optimal markdowns.  
-The system analyzes:
+This project aims to build a Dynamic Price Optimization Engine that recommends optimal markdowns for low-performing retail products.  
+The system analyzes sales velocity, inventory availability, competitor pricing, and demand elasticity to produce data-backed price recommendations.
 
-- Sales velocity  
-- Inventory availability  
-- Competitor pricing  
-- Demand elasticity indicators  
-
-The final output includes data-driven markdown percentages, new recommended prices, expected impact, and a dashboard for interactive exploration.
-
----
-
-## 2. System Flowchart (Mermaid)
-
-```mermaid
-flowchart TD
-
-    A[Data Sources (Kaggle Datasets)] --> B[Data Ingestion & Cleaning]
-
-    B --> C[Feature Engineering Layer]
-
-    C --> D[Price Optimization Engine]
-
-    D --> E[Recommendation Generator]
-
-    E --> F[Impact Evaluation Module]
-
-    F --> G[Dashboard Layer]
-
-    G --> H[Final Output (CSV / UI)]
-```
+The final output includes:
+- Optimized markdown percentages  
+- New recommended prices  
+- Impact estimation (before/after KPIs)  
+- A Streamlit dashboard for visualization  
 
 ---
 
-## 3. Problem Statement Understanding
+## 2. Problem Statement Understanding
 
-Retailers often suffer from:
+Retailers face multiple challenges:
 - Products selling slower than expected  
-- Excess inventory tied up in non-moving SKUs  
-- Competitors pricing similar products lower  
-- Delayed or non-optimized markdown decisions  
+- Excess inventory occupying working capital  
+- Competitors offering lower prices  
+- Lack of timely markdown strategies  
 
-This system solves these challenges by leveraging data from sales, stock levels, and competitor prices to automate markdown recommendations and drive better inventory health.
+The problem requires building an automated system that:
+1. Ingests product, sales, inventory, and competitor datasets  
+2. Engineers features like velocity, stock health, competitiveness  
+3. Applies pricing logic  
+4. Outputs data-backed recommendations  
 
 ---
 
-## 4. Finalized Solution Approach
+## 3. Finalized Solution Approach
 
-### 4.1 Core Pipeline
+### Core Components
 1. **Data Ingestion Layer**  
-   - Load product, sales, inventory, and competitor datasets from Kaggle  
-   - Standardize columns  
-   - Clean missing or invalid values  
-   - Merge into a unified master dataset  
+   Load Kaggle datasets for products, sales, inventory, and competitor prices.  
+   Standardize columns and unify them into a single master dataset.
 
 2. **Feature Engineering Layer**  
    - Weekly sales velocity  
-   - Stock-to-demand ratio  
+   - Inventory health (stock-to-demand ratio)  
    - Competitiveness score  
-   - Elasticity approximation  
-   - Additional retail metrics as needed  
+   - Elasticity indicator  
 
 3. **Price Optimization Engine**  
-   - Identify low-performing SKUs based on velocity + stock signals  
-   - Apply rule-based markdown percentages  
-   - Recommended markdown window (7–14 days)  
-   - Estimate impact on velocity and stock depletion  
+   Rule-based strategy:
+   - Identify low-performing SKUs  
+   - Apply markdown percentages based on demand, stock, and competitor gap  
+   - Estimate improvements  
 
 4. **Recommendation Generator**  
-   - Consolidated price recommendation table  
-   - New price calculations  
-   - Reason codes for markdown (e.g., “High stock”, “Low demand”, “Competitor undercut”)  
+   Outputs:  
+   - Markdown %  
+   - New price  
+   - Review window (7–14 days)
 
 5. **Dashboard Layer**  
-   - Built using Streamlit  
-   - Product-level insights  
-   - Interactive charts (velocity vs stock, competitor gaps)  
-   - CSV export  
+   A Streamlit dashboard for:
+   - Visual exploration  
+   - SKU-level recommendations  
+   - Downloadable CSV output  
 
 ---
 
-## 5. Dataset Selection & Mapping (Kaggle)
+## 4. Dataset Selection and Mapping
 
-| Requirement              | Kaggle Dataset                         |
-|--------------------------|-----------------------------------------|
-| Product catalog          | Retail Product Dataset                  |
-| Sales line items         | Sample Sales Dataset                    |
-| Inventory snapshot       | Product Inventory Dataset 2025          |
-| Competitor pricing       | Competitor Pricing Dataset              |
+| Requirement | Kaggle Dataset |
+|------------|----------------|
+| Product catalog | Retail Product Dataset |
+| Sales line items | Sample Sales Dataset |
+| Inventory snapshot | Product Inventory Dataset 2025 |
+| Competitor pricing | Competitor Pricing Dataset |
 
-These datasets simulate a realistic retail environment.
+Additional dataset documentation will be placed inside `/data/`.
 
 ---
 
-## 6. Project Roadmap (Sprint-Level Breakdown)
+## 5. High-Level Architecture
 
-### Backend Tasks
-- Setting up the project structure  
-- Loading datasets via ingestion scripts  
-- Creating the unified master dataset  
-- Feature engineering implementation  
-- Developing rule-based pricing engine  
-- KPI computation (before & after)  
-- Testing data transformations  
+```
+Data Sources (Kaggle CSVs)
+        |
+        v
+Data Ingestion & Cleaning
+        |
+        v
+Feature Engineering Layer
+        |
+        v
+Price Optimization Engine
+        |
+        v
+Recommendation & Impact Module
+        |
+        v
+Streamlit Dashboard / CSV Output
+```
 
-### Frontend Tasks
-- Streamlit dashboard setup  
-- Filters for category, product, price range  
-- Product recommendation table  
-- Visualizations for inventory health and competitor gaps  
-- Export button for CSV  
+A visual architecture diagram will be placed under `/docs/`.
 
-### Deployment Tasks
-- Creating requirements.txt  
-- Documentation updates  
-- Optional deployment on Streamlit Cloud  
+---
+
+## 6. Project Roadmap
+
+### Backend
+- Dataset ingestion scripts  
+- Data merging and cleaning  
+- Feature engineering  
+- Pricing engine implementation  
+- KPI computation  
+- Unit testing  
+
+### Frontend (Dashboard)
+- Streamlit setup  
+- UI layout for filters and tables  
+- Visualizations (velocity vs stock, competitor gaps)  
+- CSV export  
+
+### Deployment
+- Environment setup  
+- Requirements.txt  
+- Optional Streamlit Cloud deployment  
 
 ---
 
 ## 7. Tech Stack
 
-**Languages:**  
-Python 3.x  
-
-**Libraries:**  
-pandas, numpy, matplotlib, seaborn, scikit-learn (optional), streamlit  
-
-**Tools:**  
-GitHub, Kaggle, Jupyter Notebook, Streamlit Cloud  
+- Python 
+- pandas  
+- numpy  
+- matplotlib / seaborn  
+- scikit-learn (optional)  
+- Streamlit  
 
 ---
 
@@ -161,27 +161,8 @@ GitHub, Kaggle, Jupyter Notebook, Streamlit Cloud
 │── notebooks/
 │     ├── main_pipeline.ipynb
 │
-│── requirements.txt
 │── README.md
+│── requirements.txt
 ```
 
 ---
-
-## 9. Sprint 0 Deliverables
-
-- Understanding of the problem statement documented  
-- Kaggle datasets selected and mapped  
-- End-to-end architecture finalized (Mermaid + diagrams)  
-- Solution approach defined  
-- Tech stack confirmed  
-- Repository structure created  
-- README populated with Sprint 0 outcomes  
-
----
-
-## 10. Next Steps (Sprint 1)
-
-- Begin implementing ingestion and feature engineering  
-- Create master dataset  
-- Build the initial pricing engine logic  
-- Prepare baseline dashboard structure  
