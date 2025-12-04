@@ -22,19 +22,19 @@ The final output includes data-driven markdown percentages, new recommended pric
 ```mermaid
 flowchart TD
 
-    A[Data Sources<br>(Kaggle Datasets)] --> B[Data Ingestion & Cleaning<br>pandas-based ETL]
+    A[Data Sources (Kaggle Datasets)] --> B[Data Ingestion & Cleaning]
 
-    B --> C[Feature Engineering Layer<br>Velocity, Stock-Demand Ratio,<br>Competitiveness, Elasticity]
+    B --> C[Feature Engineering Layer]
 
-    C --> D[Price Optimization Engine<br>Rule-Based Markdown Logic]
+    C --> D[Price Optimization Engine]
 
-    D --> E[Recommendation Generator<br>Markdown %, New Price,<br>Review Window]
+    D --> E[Recommendation Generator]
 
-    E --> F[Impact Evaluation Module<br>Before/After KPI Estimation]
+    E --> F[Impact Evaluation Module]
 
-    F --> G[Dashboard Layer<br>Streamlit UI & Visualizations]
+    F --> G[Dashboard Layer]
 
-    G --> H[Final Output<br>CSV Export / Interactive Insights]
+    G --> H[Final Output (CSV / UI)]
 ```
 
 ---
